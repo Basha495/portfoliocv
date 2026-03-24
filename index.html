@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basheer Ahmed Basha — Developer Portfolio</title>
+
+  <!-- ============================================================
+       FONTS — Change here to swap typography
+       Display: Syne (geometric, modern)
+       Body:    DM Sans (clean, readable)
+  ============================================================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Iconify for icons -->
+  <script src="https://code.iconify.design/3/3.1.0/iconify.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<!-- ============================================================
+     ANIMATED BACKGROUNDS
+     Dark = starfield canvas
+     Light = floating bubbles canvas
+     Both handled by script.js
+============================================================ -->
+<canvas id="bgCanvas" class="bg-canvas"></canvas>
+  <!-- ============================================================
+       CUSTOM CURSOR
+  ============================================================ -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- ============================================================
+       NAVIGATION
+       To add links: duplicate a <li> item and update href + text
+  ============================================================ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-bracket">{</span>
+        <span class="logo-name">Basheer</span>
+        <span class="logo-bracket">}</span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#certificates" class="nav-link">Certs</a></li>
+        <li><a href="#education" class="nav-link">Education</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Resume download in navbar -->
+        <a href="./resume.pdf" download="resume.pdf" class="btn btn-resume">
+          <iconify-icon icon="ph:download-simple-bold"></iconify-icon>
+          Resume
+        </a>
+        <!-- Dark/Light toggle -->
+       <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+  <span class="theme-icon sun">☀️</span>
+  <span class="theme-icon moon">🌙</span>
+</button>
+        <!-- Hamburger for mobile -->
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO SECTION
+       Edit: tagline, subtitle, button labels
+  ============================================================ -->
+  <section class="hero" id="hero">
+    <!-- Animated grid background -->
+    <div class="hero-grid" aria-hidden="true"></div>
+    <!-- Glowing orbs -->
+    <div class="orb orb-1" aria-hidden="true"></div>
+    <div class="orb orb-2" aria-hidden="true"></div>
+    <div class="orb orb-3" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge animate-in" style="--delay:0.1s">
+          <span class="badge-dot"></span>
+          Available for Opportunities
+        </div>
+
+        <h1 class="hero-name animate-in" style="--delay:0.2s">
+          <span class="name-line"> Basheer</span>
+          <span class="name-line accent-text">Ahmed Basha</span>
+        </h1>
+
+        <p class="hero-title animate-in" style="--delay:0.35s">
+          <span class="typed-prefix">I'm an </span>
+          <span class="typed-text" id="typedText"></span>
+          <span class="typed-cursor">|</span>
+        </p>
+
+        <p class="hero-tagline animate-in" style="--delay:0.5s">
+          B.Tech CSE student passionate about building elegant solutions<br />
+          to complex problems — one line of code at a time.
+        </p>
+
+        <div class="hero-buttons animate-in" style="--delay:0.65s">
+
+  <a href="#projects" class="btn btn-primary">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+    </svg>
+    View Projects
+  </a>
+
+  <a href="#contact" class="btn btn-ghost">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 2 11 13"/><path d="M22 2 15 22 11 13 2 9l20-7z"/>
+    </svg>
+    Contact Me
+  </a>
+
+  <!-- Replace Basheer_Resume.pdf with your actual PDF filename -->
+  <a href="./resume.pdf" download="Shaik_Basheer_Ahmed_Basha_Resume.pdf" class="btn btn-resume">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+      <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+    </svg>
+    Resume
+  </a>
+
+</div>
+
+        <div class="hero-social animate-in" style="--delay:0.8s">
+
+  <a href="https://github.com/Basha495" target="_blank" rel="noopener" aria-label="GitHub">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+    </svg>
+  </a>
+
+  <a href="https://www.linkedin.com/in/basha495" target="_blank" rel="noopener" aria-label="LinkedIn">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+      <rect x="2" y="9" width="4" height="12"/>
+      <circle cx="4" cy="4" r="2"/>
+    </svg>
+  </a>
+
+  <a href="mailto:basheersb495@gmail.com" aria-label="Email">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="4" width="20" height="16" rx="2"/>
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+    </svg>
+  </a>
+
+</div>
+      </div>
+
+      <!-- ============================================================
+           PROFILE PHOTO
+           Replace the src below with your actual photo path/URL
+           e.g. src="images/profile.jpg"
+      ============================================================ -->
+      <div class="hero-photo-wrap animate-in" style="--delay:0.3s">
+        <div class="photo-frame">
+          <!-- PROFILE PHOTO PLACEHOLDER — replace src with your image -->
+          <img
+            src="prof.jpeg"
+            alt="Basheer Ahmed Basha"
+            class="profile-photo"
+            id="profilePhoto"
+          />
+          <!-- Corner accents -->
+          <div class="frame-corner tl"></div>
+          <div class="frame-corner tr"></div>
+          <div class="frame-corner bl"></div>
+          <div class="frame-corner br"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ABOUT SECTION
+       Edit the paragraphs below freely
+  ============================================================ -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">01 — About</span>
+        <h2 class="section-title">Who I Am</h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="about-lead">
+            I'm a <strong>Computer Science Engineering</strong> student at
+            Lovely Professional University, driven by a deep curiosity for
+            how technology can transform the world around us.
+          </p>
+          <p>
+            My journey in tech spans data analytics, AI-assisted applications,
+            systems programming, and web development. I thrive at the intersection
+            of logic and creativity — whether it's designing a smart parking
+            algorithm in C++ or building AI-powered health tools in Python.
+          </p>
+          <p>
+            Beyond code, I'm known for my <em>adaptability</em>, strong
+            <em>time management</em>, and a relentless drive to solve problems
+            from first principles. I participated in the
+            <strong>RC Extreme 3.0 Hackathon</strong>, where I collaborated
+            under pressure and delivered meaningful solutions.
+          </p>
+
+          <!-- Quick info chips -->
+          <div class="about-chips">
+            <span class="chip"><iconify-icon icon="ph:graduation-cap-bold"></iconify-icon> LPU, Punjab</span>
+            <span class="chip"><iconify-icon icon="ph:map-pin-bold"></iconify-icon> India</span>
+            <span class="chip"><iconify-icon icon="ph:rocket-bold"></iconify-icon> Open to Internships</span>
+            <span class="chip"><iconify-icon icon="ph:brain-bold"></iconify-icon> Problem Solver</span>
+          </div>
+        </div>
+
+        <!-- Stats column -->
+        <div class="about-stats">
+          <div class="stat-card">
+            <span class="stat-num">6.6</span>
+            <span class="stat-label">CGPA (B.Tech CSE)</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">4+</span>
+            <span class="stat-label">Projects Built</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">5</span>
+            <span class="stat-label">Certifications</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">3+</span>
+            <span class="stat-label">Years Learning</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SKILLS SECTION
+       To add a skill: duplicate a <div class="skill-item"> block
+  ============================================================ -->
+  <section class="section skills" id="skills">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">02 — Skills</span>
+        <h2 class="section-title">What I Work With</h2>
+      </div>
+
+      <div class="skills-grid">
+
+        <!-- Languages -->
+        <div class="skill-category">
+          <h3 class="cat-title">
+            <iconify-icon icon="ph:code-bold"></iconify-icon>
+            Languages
+          </h3>
+          <div class="skill-list">
+            <div class="skill-item">
+              <div class="skill-meta">
+                <iconify-icon icon="simple-icons:cplusplus"></iconify-icon>
+                <span>C++</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta">
+                <iconify-icon icon="simple-icons:java"></iconify-icon>
+                <span>Java</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta">
+                <iconify-icon icon="simple-icons:c"></iconify-icon>
+                <span>C</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta">
+                <iconify-icon icon="simple-icons:python"></iconify-icon>
+                <span>Python</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="78"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Web & Frameworks -->
+        <div class="skill-category">
+          <h3 class="cat-title">
+            <iconify-icon icon="ph:browsers-bold"></iconify-icon>
+            Web & Frameworks
+          </h3>
+          <div class="skill-list">
+            <div class="skill-item">
+              <div class="skill-meta">
+                <iconify-icon icon="simple-icons:html5"></iconify-icon>
+                <span>HTML5</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta">
+                <iconify-icon icon="simple-icons:css3"></iconify-icon>
+                <span>CSS3</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="82"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tools -->
+        <div class="skill-category">
+          <h3 class="cat-title">
+            <iconify-icon icon="ph:wrench-bold"></iconify-icon>
+            Tools & Platforms
+          </h3>
+          <div class="skill-list">
+            <div class="skill-item">
+              <div class="skill-meta">
+                <iconify-icon icon="simple-icons:mysql"></iconify-icon>
+                <span>MySQL</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="72"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta">
+                <iconify-icon icon="simple-icons:linux"></iconify-icon>
+                <span>Linux</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta">
+                <iconify-icon icon="simple-icons:git"></iconify-icon>
+                <span>Git</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="78"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta">
+                <iconify-icon icon="simple-icons:visualstudiocode"></iconify-icon>
+                <span>VS Code</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta">
+                <iconify-icon icon="simple-icons:microsoftoffice"></iconify-icon>
+                <span>MS Office</span>
+              </div>
+              <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Soft Skills -->
+        <div class="skill-category">
+          <h3 class="cat-title">
+            <iconify-icon icon="ph:star-bold"></iconify-icon>
+            Soft Skills
+          </h3>
+          <div class="soft-skills">
+            <span class="soft-pill">
+              <iconify-icon icon="ph:lightbulb-bold"></iconify-icon>
+              Problem Solving
+            </span>
+            <span class="soft-pill">
+              <iconify-icon icon="ph:arrows-out-bold"></iconify-icon>
+              Adaptability
+            </span>
+            <span class="soft-pill">
+              <iconify-icon icon="ph:clock-bold"></iconify-icon>
+              Time Management
+            </span>
+            <span class="soft-pill">
+              <iconify-icon icon="ph:users-bold"></iconify-icon>
+              Teamwork
+            </span>
+            <span class="soft-pill">
+              <iconify-icon icon="ph:chat-circle-bold"></iconify-icon>
+              Communication
+            </span>
+          </div>
+        </div>
+
+      </div><!-- end skills-grid -->
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROJECTS SECTION
+       To add a project: duplicate a <article class="project-card">
+       and update the content
+  ============================================================ -->
+  <section class="section projects" id="projects">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">03 — Projects</span>
+        <h2 class="section-title">Things I've Built</h2>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- PROJECT 1 -->
+        <article class="project-card" data-index="01">
+          <!-- Project visual banner -->
+          <div class="project-banner pb-analytics">
+            <svg viewBox="0 0 320 110" xmlns="http://www.w3.org/2000/svg" class="pb-svg">
+              <!-- Bar chart illustration -->
+              <rect x="30" y="70" width="28" height="30" rx="4" fill="rgba(167,139,250,0.7)"/>
+              <rect x="70" y="45" width="28" height="55" rx="4" fill="rgba(167,139,250,0.9)"/>
+              <rect x="110" y="58" width="28" height="42" rx="4" fill="rgba(124,58,237,0.8)"/>
+              <rect x="150" y="30" width="28" height="70" rx="4" fill="rgba(167,139,250,1)"/>
+              <rect x="190" y="50" width="28" height="50" rx="4" fill="rgba(124,58,237,0.6)"/>
+              <rect x="230" y="38" width="28" height="62" rx="4" fill="rgba(167,139,250,0.8)"/>
+              <!-- Trend line -->
+              <polyline points="44,75 84,50 124,62 164,34 204,54 244,42" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-dasharray="4 2"/>
+              <!-- Dots on trend -->
+              <circle cx="44" cy="75" r="4" fill="white" opacity="0.8"/>
+              <circle cx="84" cy="50" r="4" fill="white" opacity="0.8"/>
+              <circle cx="124" cy="62" r="4" fill="white" opacity="0.8"/>
+              <circle cx="164" cy="34" r="4" fill="white" opacity="0.8"/>
+              <circle cx="204" cy="54" r="4" fill="white" opacity="0.8"/>
+              <circle cx="244" cy="42" r="4" fill="white" opacity="0.8"/>
+              <!-- Label -->
+              <text x="270" y="25" font-size="9" fill="rgba(255,255,255,0.5)" font-family="monospace">Power BI</text>
+            </svg>
+          </div>
+          <div class="project-header">
+            <div class="project-icon">
+              <iconify-icon icon="ph:chart-bar-bold"></iconify-icon>
+            </div>
+            <div class="project-links">
+              <a href="https://www.linkedin.com/posts/basha495_global-mobile-sales-dashboard-power-bi-activity-7408066590476271616-P6J2?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEfmaboB6oz6aB07JlbU3LddZFsdGSEc7uo" target="_blank" rel="noopener" title="LinkedIn" onclick="event.stopPropagation()">
+                <iconify-icon icon="ph:linkedin-logo-bold"></iconify-icon>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">Global Mobile Sales Analysis Dashboard</h3>
+          <p class="project-desc">
+            An interactive Power BI dashboard providing deep insights into global
+            smartphone sales trends, market share, revenue patterns, and regional
+            performance comparisons across brands.
+          </p>
+          <ul class="project-features">
+            <li>Multi-region sales breakdown &amp; KPI tracking</li>
+            <li>Dynamic filters for brand, year &amp; region</li>
+            <li>Revenue trend visualization with forecasting</li>
+            <li>Top performers ranking by volume &amp; revenue</li>
+          </ul>
+          <div class="project-stack">
+            <span>Power BI</span>
+            <span>Data Analysis</span>
+            <span>DAX</span>
+            <span>Excel</span>
+          </div>
+          <!-- VIEW PROJECT BUTTON — replace href with your actual project link -->
+          <a href="https://www.linkedin.com/posts/basha495_global-mobile-sales-dashboard-power-bi-activity-7408066590476271616-P6J2?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEfmaboB6oz6aB07JlbU3LddZFsdGSEc7uo" target="_blank" rel="noopener" class="btn-view-project">
+            <iconify-icon icon="ph:arrow-up-right-bold"></iconify-icon>
+            View Project
+          </a>
+        </article>
+
+        <!-- PROJECT 2 -->
+        <article class="project-card" data-index="02">
+          <!-- Project visual banner -->
+          <div class="project-banner pb-cpp">
+            <svg viewBox="0 0 320 110" xmlns="http://www.w3.org/2000/svg" class="pb-svg">
+              <!-- Parking grid -->
+              <rect x="20" y="20" width="50" height="32" rx="5" fill="rgba(52,211,153,0.25)" stroke="rgba(52,211,153,0.6)" stroke-width="1.5"/>
+              <rect x="82" y="20" width="50" height="32" rx="5" fill="rgba(52,211,153,0.25)" stroke="rgba(52,211,153,0.6)" stroke-width="1.5"/>
+              <rect x="144" y="20" width="50" height="32" rx="5" fill="rgba(52,211,153,0.7)" stroke="rgba(52,211,153,0.9)" stroke-width="1.5"/>
+              <rect x="206" y="20" width="50" height="32" rx="5" fill="rgba(52,211,153,0.25)" stroke="rgba(52,211,153,0.6)" stroke-width="1.5"/>
+              <rect x="20" y="66" width="50" height="32" rx="5" fill="rgba(52,211,153,0.7)" stroke="rgba(52,211,153,0.9)" stroke-width="1.5"/>
+              <rect x="82" y="66" width="50" height="32" rx="5" fill="rgba(52,211,153,0.25)" stroke="rgba(52,211,153,0.6)" stroke-width="1.5"/>
+              <rect x="144" y="66" width="50" height="32" rx="5" fill="rgba(52,211,153,0.25)" stroke="rgba(52,211,153,0.6)" stroke-width="1.5"/>
+              <rect x="206" y="66" width="50" height="32" rx="5" fill="rgba(234,67,53,0.35)" stroke="rgba(234,67,53,0.7)" stroke-width="1.5"/>
+              <!-- Car icon in occupied slots -->
+              <text x="151" y="41" font-size="14" fill="white" opacity="0.9">🚗</text>
+              <text x="27" y="87" font-size="14" fill="white" opacity="0.9">🚗</text>
+              <!-- P symbol -->
+              <text x="270" y="25" font-size="9" fill="rgba(255,255,255,0.5)" font-family="monospace">C++ DSA</text>
+            </svg>
+          </div>
+          <div class="project-header">
+            <div class="project-icon">
+              <iconify-icon icon="ph:car-bold"></iconify-icon>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/Basha495/Smart-Parking-Management-System" target="_blank" rel="noopener" title="GitHub" onclick="event.stopPropagation()">
+                <iconify-icon icon="ph:github-logo-bold"></iconify-icon>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">Smart Parking Management System</h3>
+          <p class="project-desc">
+            A C++ console-based system implementing advanced DSA concepts to
+            simulate real-world parking lot management with optimal slot allocation
+            and vehicle tracking.
+          </p>
+          <ul class="project-features">
+            <li>Priority queue for optimized slot allocation</li>
+            <li>Hash maps for O(1) vehicle lookup</li>
+            <li>Real-time occupancy tracking</li>
+            <li>Automated billing &amp; time computation</li>
+          </ul>
+          <div class="project-stack">
+            <span>C++</span>
+            <span>DSA</span>
+            <span>OOP</span>
+            <span>STL</span>
+          </div>
+          <!-- VIEW PROJECT BUTTON — replace href with your GitHub repo link -->
+          <a href="https://github.com/Basha495/Smart-Parking-Management-System" target="_blank" rel="noopener" class="btn-view-project">
+            <iconify-icon icon="ph:arrow-up-right-bold"></iconify-icon>
+            View on GitHub
+          </a>
+        </article>
+
+        <!-- PROJECT 3 — FEATURED -->
+        <article class="project-card featured" data-index="03">
+          <div class="project-featured-tag">Featured</div>
+          <!-- Project visual banner -->
+          <div class="project-banner pb-ai">
+            <svg viewBox="0 0 320 110" xmlns="http://www.w3.org/2000/svg" class="pb-svg">
+              <!-- Chat bubbles -->
+              <rect x="20" y="15" width="140" height="28" rx="12" fill="rgba(167,139,250,0.3)" stroke="rgba(167,139,250,0.6)" stroke-width="1.2"/>
+              <text x="32" y="34" font-size="9" fill="rgba(255,255,255,0.8)" font-family="sans-serif">What foods help blood sugar?</text>
+              <rect x="130" y="53" width="140" height="28" rx="12" fill="rgba(124,58,237,0.5)" stroke="rgba(167,139,250,0.8)" stroke-width="1.2"/>
+              <text x="142" y="71" font-size="9" fill="rgba(255,255,255,0.9)" font-family="sans-serif">Try leafy greens &amp; whole grains</text>
+              <!-- AI brain dots -->
+              <circle cx="24" cy="90" r="5" fill="rgba(167,139,250,0.8)"/>
+              <circle cx="40" cy="90" r="5" fill="rgba(167,139,250,0.6)"/>
+              <circle cx="56" cy="90" r="5" fill="rgba(167,139,250,0.4)"/>
+              <!-- heartbeat line -->
+              <polyline points="80,90 95,90 102,75 108,105 115,80 122,90 180,90" fill="none" stroke="rgba(239,68,68,0.7)" stroke-width="2"/>
+              <text x="270" y="25" font-size="9" fill="rgba(255,255,255,0.5)" font-family="monospace">Python AI</text>
+            </svg>
+          </div>
+          <div class="project-header">
+            <div class="project-icon">
+              <iconify-icon icon="ph:robot-bold"></iconify-icon>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/Basha495/sugar-buddy-chat" target="_blank" rel="noopener" title="GitHub" onclick="event.stopPropagation()">
+                <iconify-icon icon="ph:github-logo-bold"></iconify-icon>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">Diabetic AI Assist Bot</h3>
+          <p class="project-desc">
+            An AI-powered chatbot that assists diabetes patients and caregivers
+            by answering health queries, providing dietary guidance, and offering
+            medication reminders through a clean web interface.
+          </p>
+          <ul class="project-features">
+            <li>NLP-based query understanding &amp; response</li>
+            <li>Dietary recommendation engine</li>
+            <li>Symptom checker with risk assessment</li>
+            <li>Responsive HTML/CSS chat UI</li>
+          </ul>
+          <div class="project-stack">
+            <span>Python</span>
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>NLP</span>
+            <span>AI/ML</span>
+          </div>
+          <!-- VIEW PROJECT BUTTON — replace href with your GitHub repo link -->
+          <a href="https://github.com/Basha495/sugar-buddy-chat" target="_blank" rel="noopener" class="btn-view-project">
+            <iconify-icon icon="ph:arrow-up-right-bold"></iconify-icon>
+            View on GitHub
+          </a>
+        </article>
+
+        <!-- PROJECT 4 -->
+        <article class="project-card" data-index="04">
+          <!-- Project visual banner -->
+          <div class="project-banner pb-excel">
+            <svg viewBox="0 0 320 110" xmlns="http://www.w3.org/2000/svg" class="pb-svg">
+              <!-- Pie chart -->
+              <circle cx="65" cy="58" r="38" fill="none" stroke="rgba(34,197,94,0.2)" stroke-width="18"/>
+              <circle cx="65" cy="58" r="38" fill="none" stroke="rgba(34,197,94,0.8)" stroke-width="18"
+                stroke-dasharray="72 167" stroke-dashoffset="0" transform="rotate(-90 65 58)"/>
+              <circle cx="65" cy="58" r="38" fill="none" stroke="rgba(251,191,36,0.8)" stroke-width="18"
+                stroke-dasharray="52 187" stroke-dashoffset="-72" transform="rotate(-90 65 58)"/>
+              <circle cx="65" cy="58" r="38" fill="none" stroke="rgba(59,130,246,0.8)" stroke-width="18"
+                stroke-dasharray="43 196" stroke-dashoffset="-124" transform="rotate(-90 65 58)"/>
+              <!-- Legend -->
+              <rect x="125" y="28" width="10" height="10" rx="2" fill="rgba(34,197,94,0.8)"/>
+              <text x="140" y="38" font-size="9" fill="rgba(255,255,255,0.7)" font-family="sans-serif">New Customers</text>
+              <rect x="125" y="48" width="10" height="10" rx="2" fill="rgba(251,191,36,0.8)"/>
+              <text x="140" y="58" font-size="9" fill="rgba(255,255,255,0.7)" font-family="sans-serif">Repeat Orders</text>
+              <rect x="125" y="68" width="10" height="10" rx="2" fill="rgba(59,130,246,0.8)"/>
+              <text x="140" y="78" font-size="9" fill="rgba(255,255,255,0.7)" font-family="sans-serif">Bulk Orders</text>
+              <text x="270" y="25" font-size="9" fill="rgba(255,255,255,0.5)" font-family="monospace">Excel</text>
+            </svg>
+          </div>
+          <div class="project-header">
+            <div class="project-icon">
+              <iconify-icon icon="ph:chart-line-bold"></iconify-icon>
+            </div>
+            <div class="project-links">
+              <a href="https://www.linkedin.com/posts/basha495_project-overview-customer-order-insights-activity-7318496627910930432-Q4K-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEfmaboB6oz6aB07JlbU3LddZFsdGSEc7uo" target="_blank" rel="noopener" title="LinkedIn" onclick="event.stopPropagation()">
+                <iconify-icon icon="ph:linkedin-logo-bold"></iconify-icon>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">Customer Order Insights Dashboard</h3>
+          <p class="project-desc">
+            A comprehensive Excel-based dashboard transforming raw customer
+            order data into actionable business intelligence with interactive
+            pivot charts and advanced formulas.
+          </p>
+          <ul class="project-features">
+            <li>Pivot tables with dynamic slicers</li>
+            <li>Customer segmentation &amp; RFM analysis</li>
+            <li>Order trend &amp; seasonality charts</li>
+            <li>Conditional formatting for KPI alerts</li>
+          </ul>
+          <div class="project-stack">
+            <span>Excel</span>
+            <span>Pivot Tables</span>
+            <span>Data Viz</span>
+            <span>Analytics</span>
+          </div>
+          <!-- VIEW PROJECT BUTTON — replace href with your LinkedIn post link -->
+          <a href="https://www.linkedin.com/posts/basha495_project-overview-customer-order-insights-activity-7318496627910930432-Q4K-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEfmaboB6oz6aB07JlbU3LddZFsdGSEc7uo" target="_blank" rel="noopener" class="btn-view-project">
+            <iconify-icon icon="ph:linkedin-logo-bold"></iconify-icon>
+            View on LinkedIn
+          </a>
+        </article>
+
+      </div><!-- end projects-grid -->
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CERTIFICATES SECTION
+       To add: duplicate a <div class="cert-card"> block
+  ============================================================ -->
+  <section class="section certificates" id="certificates">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">04 — Certificates</span>
+        <h2 class="section-title">Credentials</h2>
+      </div>
+
+      <div class="certs-grid">
+
+  <!-- CERTIFICATE 1 — Prompt Engineering -->
+  <a href="cert-prompt.pdf" target="_blank" rel="noopener" class="cert-card">
+    <div class="cert-issuer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+      Infosys
+    </div>
+    <h3 class="cert-title">Prompt Engineering</h3>
+    <p class="cert-desc">Mastering effective prompting techniques for large language models and generative AI systems.</p>
+    <div class="cert-footer">
+      <div class="cert-badge">Completed</div>
+      <div class="cert-view">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        View
+      </div>
+    </div>
+  </a>
+
+  <!-- CERTIFICATE 2 — Generative AI Tools -->
+  <a href="cert-genai.pdf" target="_blank" rel="noopener" class="cert-card">
+    <div class="cert-issuer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+      Infosys
+    </div>
+    <h3 class="cert-title">Generative AI Tools</h3>
+    <p class="cert-desc">Hands-on experience with generative AI platforms, tools, and real-world applications.</p>
+    <div class="cert-footer">
+      <div class="cert-badge">Completed</div>
+      <div class="cert-view">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        View
+      </div>
+    </div>
+  </a>
+
+  <!-- CERTIFICATE 3 — Data Structures -->
+  <a href="cert-dsa.pdf" target="_blank" rel="noopener" class="cert-card">
+    <div class="cert-issuer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      Certification
+    </div>
+    <h3 class="cert-title">Data Structures</h3>
+    <p class="cert-desc">Comprehensive certification covering Data Structures implemented in C, C++, and Java.</p>
+    <div class="cert-footer">
+      <div class="cert-badge">Completed</div>
+      <div class="cert-view">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        View
+      </div>
+    </div>
+  </a>
+
+  <!-- CERTIFICATE 4 — Digital Systems -->
+  <a href="cert-digital.pdf" target="_blank" rel="noopener" class="cert-card">
+    <div class="cert-issuer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      Coursera
+    </div>
+    <h3 class="cert-title">Digital Systems</h3>
+    <p class="cert-desc">Fundamentals of digital logic, binary arithmetic, and combinational/sequential circuits.</p>
+    <div class="cert-footer">
+      <div class="cert-badge">Completed</div>
+      <div class="cert-view">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        View
+      </div>
+    </div>
+  </a>
+
+  <!-- CERTIFICATE 5 — Computer Networking -->
+  <a href="cert-networking.pdf" target="_blank" rel="noopener" class="cert-card">
+    <div class="cert-issuer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      Coursera
+    </div>
+    <h3 class="cert-title">Computer Networking</h3>
+    <p class="cert-desc">In-depth study of network protocols, OSI model, TCP/IP, routing, and network security.</p>
+    <div class="cert-footer">
+      <div class="cert-badge">Completed</div>
+      <div class="cert-view">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        View
+      </div>
+    </div>
+  </a>
+
+</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EDUCATION SECTION
+  ============================================================ -->
+  <section class="section education" id="education">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">05 — Education</span>
+        <h2 class="section-title">Academic Journey</h2>
+      </div>
+
+      <div class="edu-timeline">
+
+        <div class="edu-item">
+          <div class="edu-dot"></div>
+          <div class="edu-card">
+            <div class="edu-year">2021 — Present</div>
+            <h3 class="edu-degree">B.Tech Computer Science Engineering</h3>
+            <p class="edu-inst">
+              <iconify-icon icon="ph:buildings-bold"></iconify-icon>
+              Lovely Professional University, Punjab
+            </p>
+            <div class="edu-score">
+              <span>CGPA</span>
+              <strong>6.6</strong>
+            </div>
+            <p class="edu-desc">
+              Studying core CS fundamentals including Data Structures, Algorithms,
+              Operating Systems, DBMS, Computer Networks, and Software Engineering.
+            </p>
+          </div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-dot"></div>
+          <div class="edu-card">
+            <div class="edu-year">2019 — 2021</div>
+            <h3 class="edu-degree">Intermediate (Class XII)</h3>
+            <p class="edu-inst">
+              <iconify-icon icon="ph:buildings-bold"></iconify-icon>
+              Board of Intermediate Education
+            </p>
+            <div class="edu-score">
+              <span>Percentage</span>
+              <strong>73%</strong>
+            </div>
+            <p class="edu-desc">
+              Completed Intermediate education with focus on Mathematics,
+              Physics, and Chemistry.
+            </p>
+          </div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-dot"></div>
+          <div class="edu-card">
+            <div class="edu-year">2018 — 2019</div>
+            <h3 class="edu-degree">Matriculation (Class X)</h3>
+            <p class="edu-inst">
+              <iconify-icon icon="ph:buildings-bold"></iconify-icon>
+              Board of Secondary Education
+            </p>
+            <div class="edu-score">
+              <span>Percentage</span>
+              <strong>86%</strong>
+            </div>
+            <p class="edu-desc">
+              Excelled in secondary education with a strong academic foundation
+              across all subjects.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Extra Activities -->
+      <div class="extra-activities">
+        <h3 class="extra-title">
+          <iconify-icon icon="ph:lightning-bold"></iconify-icon>
+          Extra Activities
+        </h3>
+        <div class="activity-card">
+          <div class="activity-icon">
+            <iconify-icon icon="ph:trophy-bold"></iconify-icon>
+          </div>
+          <div class="activity-info">
+            <h4>RC Extreme 3.0 Hackathon</h4>
+            <p>
+              Participated in the RC Extreme 3.0 Hackathon, collaborating with a
+              team to design and build innovative tech solutions under tight deadlines.
+              Gained hands-on experience in rapid prototyping and agile development.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT SECTION
+  ============================================================ -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">06 — Contact</span>
+        <h2 class="section-title">Get In Touch</h2>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Contact info -->
+        <div class="contact-info">
+          <p class="contact-intro">
+            I'm currently looking for internship and entry-level opportunities.
+            Whether you have a question, a project idea, or just want to say hello —
+            my inbox is always open!
+          </p>
+
+          <div class="contact-items">
+
+  <!-- EMAIL -->
+  <a href="mailto:basheersb495@gmail.com" class="contact-item ci-email">
+    <div class="ci-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="4" width="20" height="16" rx="2"/>
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+      </svg>
+    </div>
+    <div class="ci-text">
+      <span>Email</span>
+      <strong>basheersb495@gmail.com</strong>
+    </div>
+  </a>
+
+  <!-- PHONE -->
+  <a href="tel:+919390198294" class="contact-item ci-phone">
+    <div class="ci-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+      </svg>
+    </div>
+    <div class="ci-text">
+      <span>Phone</span>
+      <strong>+91-9390198294</strong>
+    </div>
+  </a>
+
+  <!-- LINKEDIN -->
+  <a href="https://www.linkedin.com/in/basha495" target="_blank" rel="noopener" class="contact-item ci-linkedin">
+    <div class="ci-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+        <rect x="2" y="9" width="4" height="12"/>
+        <circle cx="4" cy="4" r="2"/>
+      </svg>
+    </div>
+    <div class="ci-text">
+      <span>LinkedIn</span>
+      <strong>linkedin.com/in/basha495</strong>
+    </div>
+  </a>
+
+  <!-- GITHUB -->
+  <a href="https://github.com/Basha495" target="_blank" rel="noopener" class="contact-item ci-github">
+    <div class="ci-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+      </svg>
+    </div>
+    <div class="ci-text">
+      <span>GitHub</span>
+      <strong>github.com/Basha495</strong>
+    </div>
+  </a>
+
+</div>
+        </div>
+
+        <!-- Contact Form -->
+        <!-- NOTE: Replace the form action with Formspree / EmailJS / Netlify Forms -->
+        <div class="contact-form-wrap">
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label for="formName">Your Name</label>
+              <input type="text" id="formName" name="name" placeholder="John Doe" required />
+            </div>
+            <div class="form-group">
+              <label for="formEmail">Your Email</label>
+              <input type="email" id="formEmail" name="email" placeholder="john@example.com" required />
+            </div>
+            <div class="form-group">
+              <label for="formMsg">Message</label>
+              <textarea id="formMsg" name="message" rows="5" placeholder="Tell me about your project or opportunity..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary form-submit">
+              <iconify-icon icon="ph:paper-plane-tilt-bold"></iconify-icon>
+              Send Message
+            </button>
+            <p class="form-success" id="formSuccess">
+              <iconify-icon icon="ph:check-circle-bold"></iconify-icon>
+              Message sent! I'll get back to you soon.
+            </p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p class="footer-copy">
+          &copy; 2025 <span>Basheer Ahmed Basha</span>. Crafted with
+          <iconify-icon icon="ph:heart-bold"></iconify-icon> and lots of code.
+        </p>
+        <div class="footer-social">
+
+  <a href="https://github.com/Basha495" target="_blank" rel="noopener" aria-label="GitHub">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+    </svg>
+  </a>
+
+  <a href="https://www.linkedin.com/in/basha495" target="_blank" rel="noopener" aria-label="LinkedIn">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+      <rect x="2" y="9" width="4" height="12"/>
+      <circle cx="4" cy="4" r="2"/>
+    </svg>
+  </a>
+
+  <a href="mailto:basheersb495@gmail.com" aria-label="Email">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="4" width="20" height="16" rx="2"/>
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+    </svg>
+  </a>
+
+</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       SCROLL TO TOP BUTTON
+  ============================================================ -->
+  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+    <iconify-icon icon="ph:arrow-up-bold"></iconify-icon>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
